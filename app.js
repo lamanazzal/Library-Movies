@@ -5,13 +5,13 @@ const axios = require('axios');
 require('dotenv').config();
 const bodyParser = require('body-parser')
 const { Client } = require('pg')
-// let url = `postgres://lama94:0000@localhost:5432/moviedb`;
-let url =process.env.URL
+//let db = `postgres://lama94:0000@localhost:5432/moviedb`;
+let url =process.env.URL 
 const client = new Client(url)
 const app = express();
 const movieData=require('./MovieData/data.json');
 // const{json} = require('express');
-const port = process.env.port;
+const PORT = process.env.PORT;
 const apikey = process.env.apikey;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -235,8 +235,8 @@ app.use((err, req, res, next) => {
 //listen
 
 client.connect().then(()=>{
-app.listen(port, () => {
-    console.log(`example app listening on port ${port}`)
+app.listen(PORT, () => {
+    console.log(`example app listening on port ${PORT}`)
 })
 }).catch(err =>{
     console.log('error here');
